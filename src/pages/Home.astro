@@ -1,12 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ReceptesController from '../classes/ReceptesController';
 
-
-const receptesController = new ReceptesController();
-const receptes = await receptesController.getAllReceptes();
+if (Astro.cookies.has('usuari')) {
+} else {
+  return Astro.redirect('/Login');
+}
 ---
 
-<Layout title='Mis Recetas'>
-
-</Layout>
+<Layout title='Mis Recetas'></Layout>

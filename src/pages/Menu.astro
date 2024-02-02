@@ -3,8 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import ReceptesController from '../classes/ReceptesController';
 import Recepta from '../components/Recepta.astro';
 
+if (Astro.cookies.has('usuari')) {
+} else {
+  return Astro.redirect('/Login');
+}
+
+const usuarioName = Astro.cookies.get('usuari');
 const receptesController = new ReceptesController();
-const receptes = await receptesController.getAllReceptes();
+const receptes = await receptesController.getAllReceptes(usuarioName);
 ---
 
 <Layout title='Mis Recetas'>
@@ -24,7 +30,7 @@ const receptes = await receptesController.getAllReceptes();
   </div>
   <div class='bg-[#CCDCE5]'>
     <div class='grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-3 gap-20 px-8'>
-      {receptes.list.map((e) => <Recepta dades={e} />)}
+      {receptes.map(e => <Recepta dades={e} />) }
     </div>
   </div>
 </Layout>

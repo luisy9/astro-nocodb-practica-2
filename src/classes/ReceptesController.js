@@ -7,7 +7,7 @@ class ReceptesController {
     this.token = TOKEN;
   }
 
-  async getAllReceptes() {
+  async getAllReceptes(nameUser) {
     const response = await fetch(`${this.apiUrl}`, {
       method: 'GET',
       headers: {
@@ -17,7 +17,9 @@ class ReceptesController {
     });
 
     const data = await response.json();
-    return data;
+    console.log(nameUser.value);
+    const userReceptas = data.list.filter((e) => e.user === nameUser?.value);
+    return userReceptas;
   }
 
   async getReceptaById(id) {
