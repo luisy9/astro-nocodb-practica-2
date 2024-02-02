@@ -1,0 +1,82 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ReceptesController from '../../../classes/ReceptesController';
+import Back from '../../../components/Back.astro';
+
+const receptesController = new ReceptesController();
+const { Id } = Astro.params;
+
+let consultaId = await receptesController.getReceptaById(Id);
+
+if (Astro.request.method === 'POST') {
+  const data = await Astro.request.formData();
+  const nom = data.get('nom');
+  const foto = data.get('foto');
+  const descripcio = data.get('descripcio');
+
+  await receptesController.createRecepta(nom, foto, descripcio);
+
+  return Astro.redirect('/');
+}
+---
+
+<Layout title='Nova recepta'>
+  <Back />
+
+  <form method='post'>
+    <div class='md:flex md:items-center mb-6'>
+      <div class='md:w-1/3'>
+        <label
+          class='block text-gray-500 md:text-right mb-1 md:mb-0 pr-4'
+          for='inline-full-name'
+        >
+        </label>
+      </div>
+      <div class='md:w-2/3'>
+        <input
+          class='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700'
+          name='nom'
+          type='text'
+          value={consultaId.nom}
+        />
+      </div>
+    </div>
+    <div class='md:flex md:items-center mb-6'>
+      <div class='md:w-1/3'>
+        <label
+          class='block text-gray-500 md:text-right mb-1 md:mb-0 pr-4'
+          for='inline-full-name'
+        >
+          Foto
+        </label>
+      </div>
+      <div class='md:w-2/3'>
+        <input
+          class='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700'
+          name='foto'
+          type='text'
+          value={consultaId.foto}
+        />
+      </div>
+    </div>
+    <div class='md:flex md:items-center mb-6'>
+      <div class='md:w-1/3'>
+        <label
+          class='block text-gray-500 md:text-right mb-1 md:mb-0 pr-4'
+          for='inline-full-name'
+        >
+          Descripcio
+        </label>
+      </div>
+      <div class='md:w-2/3'>
+        <textarea
+          class='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700'
+          name='descripcio'
+          value={consultaId.descripcio}>{consultaId.descripcio}</textarea
+        >
+      </div>
+    </div>
+    <button
+      class='border-2 px-3 py-1 rounded-md text-green-500 border-green-500 hover:bg-green-500 hover:text-white'>Enviar</button>
+  </form>
+</Layout>
