@@ -1,0 +1,6 @@
+---
+const { language } = Astro.params;
+
+Astro.cookies.set('idioma', language, {path: '/'});
+return Astro.redirect('/');
+---

@@ -17,7 +17,6 @@ class ReceptesController {
     });
 
     const data = await response.json();
-    console.log(nameUser.value);
     const userReceptas = data.list.filter((e) => e.user === nameUser?.value);
     return userReceptas;
   }

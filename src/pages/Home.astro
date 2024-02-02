@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+console.log('hola')
 if (Astro.cookies.has('usuari')) {
+  console.log('hola')
+  Astro.cookies.set('idioma', 'cat');
+  return Astro.redirect('/');
 } else {
   return Astro.redirect('/Login');
 }

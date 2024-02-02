@@ -1,5 +1,14 @@
 ---
 const user = Astro.cookies.get('usuari');
+let language;
+
+if (Astro.cookies.has('idioma')) {
+  const cookie = Astro.cookies.get('idioma');
+  language = cookie.value;
+} else {
+  // Astro.cookies.set('idioma', 'ca', {path: '/'});
+  // language = 'ca';
+}
 ---
 
 <nav class='bg-gray-800'>
@@ -33,7 +42,7 @@ const user = Astro.cookies.get('usuari');
               stroke-linejoin='round'
               d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'></path>
           </svg>
-          
+
           <svg
             class='hidden h-6 w-6'
             fill='none'
@@ -77,7 +86,29 @@ const user = Astro.cookies.get('usuari');
               class='text-gray-300 hover:bg-gray-700 text-md hover:text-white rounded-md px-3 py-2 font-medium'
               >About Us</a
             >
-            <p>{user ? <a href="/Logout" class="text-white">Logout</a> : <a href="/Login" class="text-white">Login</a>}</p>
+            <div class='flex items-center px-5'>
+              <a>
+                {
+                  user ? (
+                    <a href='/Logout' class='text-white'>
+                      Logout
+                    </a>
+                  ) : (
+                    <a href='/Login' class='text-white'>
+                      Login
+                    </a>
+                  )
+                }
+              </a>
+            </div>
+            <div class='flex justify-center gap-10 items-center'>
+              <a href={'/' + 'es'}
+                ><img src='/img/espana.png' alt='espana' class='w-8' /></a
+              >
+              <a href={'/' + 'cat'}
+                ><img src='/img/cataluna.png' alt='espana' class='w-8' /></a
+              >
+            </div>
           </div>
         </div>
         <div

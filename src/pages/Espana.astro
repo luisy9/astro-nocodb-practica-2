@@ -1,0 +1,11 @@
+---
+const cookie = Astro.cookies.has('idioma');
+if (cookie) {
+  const idioma = Astro.cookies.get('idioma').toString();
+  console.log(idioma)
+  if (idioma != 'es') {
+    Astro.cookies.set('idioma', 'es');
+    return Astro.redirect('/Menu');
+  }
+}
+---
