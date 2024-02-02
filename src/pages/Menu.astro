@@ -3,19 +3,28 @@ import Layout from '../layouts/Layout.astro';
 import ReceptesController from '../classes/ReceptesController';
 import Recepta from '../components/Recepta.astro';
 
-
 const receptesController = new ReceptesController();
 const receptes = await receptesController.getAllReceptes();
 ---
 
 <Layout title='Mis Recetas'>
-  <a href='/receptes/nova'
-    ><button
-      class='px-3 py-2 border-green-500 border rounded-md text-green-500 hover:bg-green-500 hover:text-white mb-5'
-      >Nova recepta</button
-    ></a
+  <div
+    class='flex justify-center items-center align-bottom pt-5 bg-[#338AC6] h-60'
   >
-  <div class='grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-3 gap-20'>
-    {receptes.list.map((e) => <Recepta dades={e} />)}
+    <div class='relative'>
+      <div class='absolute -inset-2 bg-[#1F2937] rounded-lg blur-lg bottom-3'>
+      </div>
+      <a href='/receptes/nova'>
+        <button
+          class='relative px-3 py-2 border-none rounded-lg text-[#338AC6] bg-[#1F2937] hover:shadow-inner hover:text-white mb-5'
+          >Nova recepta</button
+        ></a
+      >
+    </div>
+  </div>
+  <div class='bg-[#CCDCE5]'>
+    <div class='grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-3 gap-20 px-8'>
+      {receptes.list.map((e) => <Recepta dades={e} />)}
+    </div>
   </div>
 </Layout>
