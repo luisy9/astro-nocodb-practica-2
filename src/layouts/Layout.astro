@@ -1,16 +1,20 @@
 ---
-import Header from "../components/Header.astro";
-const {title} = Astro.props;
+import Header from '../components/Header.astro';
+import NavBar from '../components/NavBar.astro';
+const { title } = Astro.props;
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>{title}</title>
-</head>
-<body class="bg-stone-200 px-12 py-10">
-    <Header title={title} />
+  </head>
+  <header>
+    <NavBar />
+  </header>
+  <body class='bg-stone-200 px-12 py-20'>
     <slot />
-</body>
+  </body>
 </html>

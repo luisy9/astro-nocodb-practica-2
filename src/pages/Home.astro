@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ReceptesController from '../classes/ReceptesController';
-import Recepta from '../components/Recepta.astro';
 
 
 const receptesController = new ReceptesController();
@@ -9,5 +8,5 @@ const receptes = await receptesController.getAllReceptes();
 ---
 
 <Layout title='Mis Recetas'>
- 
+
 </Layout>
