@@ -1,0 +1,21 @@
+---
+const { nom } = Astro.props;
+---
+
+<div class='border-2 rounded-lg'>
+  <div>
+    <h1 class='text-center pt-5 text-2xl'>{nom}</h1>
+  </div>
+  <div class='flex items-center justify-center h-60 gap-20'>
+    <div>
+      <button class='bg-sky-500 text-white border-none px-5 rounded-lg py-1'
+        >Modificar</button
+      >
+    </div>
+    <div>
+      <button class='bg-red-500 text-white border-none px-5 rounded-lg py-1'
+        >Eliminar</button
+      >
+    </div>
+  </div>
+</div>
