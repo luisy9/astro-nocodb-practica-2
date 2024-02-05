@@ -86,21 +86,6 @@ if (Astro.cookies.has('idioma')) {
               class='text-gray-300 hover:bg-gray-700 text-md hover:text-white rounded-md px-3 py-2 font-medium'
               >About Us</a
             >
-            <div class='flex items-center px-5'>
-              <a>
-                {
-                  user ? (
-                    <a href='/Logout' class='text-white'>
-                      Logout
-                    </a>
-                  ) : (
-                    <a href='/Login' class='text-white'>
-                      Login
-                    </a>
-                  )
-                }
-              </a>
-            </div>
             <div class='flex justify-center gap-10 items-center'>
               <a href={'/' + 'es'}
                 ><img src='/img/espana.png' alt='espana' class='w-8' /></a
@@ -111,15 +96,32 @@ if (Astro.cookies.has('idioma')) {
             </div>
           </div>
         </div>
+        <div class='flex items-center justify-end px-5'>
+          <a>
+            {
+              user ? (
+                <a href='/Logout' class='text-white hover:underline'>
+                  Logout {user.value}
+                </a>
+              ) : (
+                <a href='/Login' class='text-white'>
+                  Login
+                </a>
+              )
+            }
+          </a>
+        </div>
         <div
           class='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'
         >
+        
           <!-- Profile dropdown -->
           <div
             class='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'
           >
             <!-- Profile dropdown -->
             <div class='relative ml-3'>
+              
               <div>
                 <button
                   type='button'

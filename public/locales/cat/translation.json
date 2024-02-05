@@ -1,0 +1,10 @@
+{
+  "site": {
+    "title": "Aquesta es la meva pagina",
+    "description": "Aquesta es la descripcio de la meva pagina"
+  },
+  "home": {
+    "title": "Benvingut a la meva pagina Home",
+    "subtitle": "Aquesta es la meve sencilla pagina Home"
+  }
+}

@@ -1,11 +1,12 @@
 ---
+import i18next, { t } from 'i18next';
 import Header from '../components/Header.astro';
 import NavBar from '../components/NavBar.astro';
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang={i18next.language}>
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />

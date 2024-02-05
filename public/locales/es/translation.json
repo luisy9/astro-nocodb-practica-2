@@ -1,0 +1,10 @@
+{
+  "site": {
+    "title": "Mi pagina de recetas",
+    "description": "Aquí esta mi pagina de recetas!"
+  },
+  "home": {
+    "title": "Bienvenido a mi pagina Home",
+    "subtitle": "Esta es mi sencilla pagina Home"
+  }
+}
