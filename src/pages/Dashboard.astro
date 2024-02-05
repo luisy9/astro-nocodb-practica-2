@@ -1,55 +1,57 @@
 ---
+const user = Astro.cookies.get('usuari');
+
 import UsuariosController from '../classes/UsuariosController';
 import Users from '../components/Users.astro';
 import Layout from '../layouts/Layout.astro';
+import Login from './Login.astro';
 
 const users = new UsuariosController();
 const usuarios = await users.getAllUsuaris();
 const usersArray = await usuarios.list;
 ---
 
-<Layout>
-  <div class='bg-[#F1F4F8] h-full grid grid-cols-1 items-center'>
-    <div class='p-4'>
-      <div
-        class='h-60 bg-gray-100 border-2 rounded-lg border-solid flex items-center justify-center'
-      >
-        <!-- <div class=''>
-          <h1 class='text-center pb-20 text-3xl'>Logout</h1> -->
-
-        <div>
-          <h1 class="text-center text-3xl pb-20">Logout</h1>
-          <a href='/Logout'>
-            <button
-              class='px-10 border-2 py-2 text-red-500 rounded-lg border-rose-500 hover:border-rose-500 hover:bg-red-500 hover:text-white'
-              >Logout</button
-            >
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class='p-4'>
-      <div
-        class='h-60 bg-gray-100 border-2 rounded-lg border-solid flex items-center justify-center'
-      >
-        <div class=''>
-          <h1 class='text-center pb-20 text-3xl'>Crear Usuario</h1>
-          <div class='flex justify-center'>
+{
+  user ? (
+    <Layout>
+      <div class='bg-[#F1F4F8] h-full grid grid-cols-1 items-center'>
+        <div class='p-4'>
+          <div class='h-60 bg-gray-100 border-2 rounded-lg border-solid flex items-center justify-center'>
             <div>
+              <h1 class='text-center text-3xl pb-20'>Logout</h1>
               <a href='/Logout'>
-                <button
-                  class='px-10 border-2 py-2 text-green-500 rounded-lg border-green-500 hover:border-green-500 hover:bg-green-500 hover:text-white'
-                  >Crear</button
-                >
+                <button class='px-10 border-2 py-2 text-red-500 rounded-lg border-rose-500 hover:border-rose-500 hover:bg-red-500 hover:text-white'>
+                  Logout
+                </button>
               </a>
             </div>
           </div>
         </div>
+        <div class='p-4'>
+          <div class='h-60 bg-gray-100 border-2 rounded-lg border-solid flex items-center justify-center'>
+            <div class=''>
+              <h1 class='text-center pb-20 text-3xl'>Crear Usuario</h1>
+              <div class='flex justify-center'>
+                <div>
+                  <a href='/NewUser'>
+                    <button class='px-10 border-2 py-2 text-green-500 rounded-lg border-green-500 hover:border-green-500 hover:bg-green-500 hover:text-white'>
+                      Crear
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Usuario Grid */}
+        <div class='grid lg:grid-cols-3 md:grid-cols-2 gap-5 p-4 items-center'>
+          {usersArray.map((e) => (
+            <Users nom={e.nom} />
+          ))}
+        </div>
       </div>
-    </div>
-    {/* Usuario Grid */}
-    <div class='grid lg:grid-cols-3 md:grid-cols-2 gap-5 p-4 items-center'>
-      {usersArray.map((e) => <Users nom={e.nom} />)}
-    </div>
-  </div>
-</Layout>
+    </Layout>
+  ) : (
+    <Login />
+  )
+}

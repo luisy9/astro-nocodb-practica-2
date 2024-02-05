@@ -14,7 +14,10 @@ const receptes = await receptesController.getAllReceptes(usuarioName);
 ---
 
 <Layout title='Mis Recetas'>
-  <div class='flex justify-center items-center align-bottom pt-5 h-80 bg-cover' style="background-image: url('/img/restaurante.jpg');">
+  <div
+    class='flex justify-center items-center align-bottom pt-5 h-80 bg-cover'
+    style="background-image: url('/img/restaurante.jpg');"
+  >
     <div class='relative'>
       <div class='absolute -inset-2 bg-[#1F2937] rounded-lg blur-lg bottom-3'>
       </div>
@@ -27,7 +30,9 @@ const receptes = await receptesController.getAllReceptes(usuarioName);
     </div>
   </div>
   <div class='bg-[#CCDCE5]'>
-    <div class='grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-3 gap-20 px-8 py-10'>
+    <div
+      class='grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-3 gap-20 px-8 py-10'
+    >
       {receptes.map((e) => <Recepta dades={e} />)}
     </div>
   </div>
